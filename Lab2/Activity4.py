@@ -67,28 +67,31 @@ if (a == 3):
                                 break
                         else:
                                 x = grovepi.analogRead(sound_sensor)
-if (a == 2):
+                                x = (float)(x) * 5/1023
+                                m = round(x,2)
+                                print('The measure is {} volts!'.format(m))
+        except IOError:
+                print "Error"                                
+if (a == 4):
         try:
                 while True:
-                        n = raw_input("Please click enter to get the angle (degrees) or stop to stop!")
+                        n = raw_input("Please click enter to get light sensor information or stop to stop!")
                         if(n  == 'stop'):
                                 break
                         else:
-                                x = grovepi.analogRead(pot)
-                                x = (float)(x) * 5/1023
-                                degrees = round(x*300/5,2)
-                                print('The position is {0} degrees'.format(degrees))
+                                x = grovepi.analogRead(light_sensor)
+                                resistance = round((float)(1023 - x) * 10,2) / x #This is KOhm
+                                print('The sensor value is {0} and the resistance value is {1}k'.format(x,resistance))
         except IOError:
                 print "Error"
-if (a == 3):
+if (a == 5):
         try:
                 while True:
-                        n = raw_input("Please click enter to get sound sensor information or stop to stop!")
-                        x = grovepi.digitalRead(button)
+                        n = raw_input("Please click enter to get button information or stop to stop!")
                         if(n == 'stop'):
                                 break
                         else:
-                                x = grovepi.digitalRead(touch_sensor)
+                                x = grovepi.digitalRead(button)
                                 if (x == 1):
                                         print "the button is pressed"
                                 else:
