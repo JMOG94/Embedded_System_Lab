@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+
+main(int args, char *argv[])
+{
+	
+	int student = atoi(argv[2]);
+	int i = 0;
+
+	//To create the file or over-write
+	FILE *f= fopen("Datalog.txt", "w");
+	fprintf(f,"This is a brand new file! \n");
+	fclose(f);
+	//To append Data:
+	f = fopen("Datalog.txt","a");
+	fprintf(f,"You just have appended the file! \n");
+	fclose(f);
+	
+	for(i = 0; i<student;i++)
+	{
+		char str[20];
+		//str = " ";
+		printf("Enter name: \n");		
+		scanf("%s",str);
+		f = fopen("Datalog.txt", "a");
+		if (f == NULL)
+		{
+			//fprintf(stderr, "Error opening file!\n");
+			exit(1);
+		}
+		fprintf(f,"Student: %s		",str);
+		fclose(f);
+		//str = " ";
+		printf("Enter ID: \n");
+		scanf("%s",str);
+		f = fopen("Datalog.txt", "a");
+		if (f == NULL)
+		{
+			//fprintf(stderr, "Error opening file!\n");
+			exit(1);
+		}
+		fprintf(f,"ID: %s \n",str);
+		fclose(f);
+		printf("Do you wish to add more [y/n] \n");
+		scanf("%s",str);
+		if(strcmp(str,"n")==0)
+		{
+			break;
+		}
+	}
+
+}
